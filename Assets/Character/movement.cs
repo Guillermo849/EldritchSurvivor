@@ -6,6 +6,8 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
 
+    [SerializeField] float speed;
+
     Rigidbody2D rgbd2d;
     Vector3 movementVector;
 
@@ -22,6 +24,6 @@ public class movement : MonoBehaviour
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.y = Input.GetAxisRaw("Vertical");
 
-        rgbd2d.velocity = movementVector;
+        rgbd2d.velocity = movementVector * speed;
     }
 }
