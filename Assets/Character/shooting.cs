@@ -5,7 +5,7 @@ using UnityEngine;
 public class shooting : MonoBehaviour
 {
     private Vector3 mousePos;
-    // public GameObject bullet;
+    public GameObject bullet;
     public Transform bulletTransform;
     public bool canFire;
     private float timer;
@@ -35,7 +35,7 @@ public class shooting : MonoBehaviour
 
         if (Input.GetMouseButton(0) && canFire) {
             canFire = false;
-            // Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
 }
