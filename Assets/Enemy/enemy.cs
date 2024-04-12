@@ -10,9 +10,12 @@ public class enemy : MonoBehaviour
 {
     [SerializeField] Transform targetDestination;
     GameObject targetGameObject;
+    [SerializeField]Character targedCharacter;
     [SerializeField] float speed;
 
     Rigidbody2D rgbd2d;
+
+    [SerializeField] int damage = 1;
 
     private void Awake() 
     {
@@ -36,6 +39,7 @@ public class enemy : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("Le pega");
+        targedCharacter.TakeDamage(damage);   
     }
+    
 }
