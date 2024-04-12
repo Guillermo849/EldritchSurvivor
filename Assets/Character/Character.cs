@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
         if (currentHp < 0)
         {
             Debug.LogWarning("Has morido GAME OVER");
+            Time.timeScale = 0;
         }
         hpBar.SetState(currentHp, maxHp);
     }
