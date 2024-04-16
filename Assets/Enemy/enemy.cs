@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Debug = UnityEngine.Debug;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] Transform targetDestination;
     GameObject targetGameObject;
     [SerializeField]Character targedCharacter;
-    [SerializeField] float speed;
+    private float SPEED = 1.03f;
 
     Rigidbody2D rgbd2d;
 
@@ -26,7 +26,7 @@ public class enemy : MonoBehaviour
     private void FixedUpdate() 
     {
         Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rgbd2d.velocity = direction * speed;
+        rgbd2d.velocity = direction * SPEED;
     }
 
     private void OnCollisionStay2D(Collision2D collision) 
