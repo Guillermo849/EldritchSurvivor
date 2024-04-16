@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]Character targedCharacter;
     private float SPEED = 1.03f;
 
+    public int maxHp = 20;
+
+    public int currentHp = 20;
+
     Rigidbody2D rgbd2d;
 
     [SerializeField] int damage = 1;
@@ -41,5 +45,18 @@ public class Enemy : MonoBehaviour
     {
         targedCharacter.TakeDamage(damage);   
     }
-    
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+    }
+
+    private void Update() {
+
+        if (currentHp <= 0)
+        {
+            Debug.LogWarning("Enemigo eliminado");
+            Destroy(gameObject);
+        }        
+    }
 }

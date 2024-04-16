@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     private Vector3 mousePos;
     private Rigidbody2D rb;
     public float force;
+    public int damage = 5;
+    [SerializeField] GameObject targedEnemy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,4 +23,14 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         Destroy(gameObject, 10);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if (collision.gameObject.tag == "enemy")
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
+
 }
