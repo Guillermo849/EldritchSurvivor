@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6627548454143645742}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 778ea9231db3b3546addded3405c16f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetDestination: {fileID: 0}
-  speed: 1
+  maxHp: 15
+  currentHp: 15
 --- !u!61 &-226357250637305802
 BoxCollider2D:
   m_ObjectHideFlags: 0
