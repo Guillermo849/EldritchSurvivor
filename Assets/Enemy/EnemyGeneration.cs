@@ -13,6 +13,9 @@ public class EnemyGeneration : MonoBehaviour
     private float timer;
     public float timeBetweenGeneration;
     [SerializeField] public Transform centerPoint;
+    private float targetTime = 0.0f;
+    private float timeBetweenEnemyUpgrade = 0.0f;
+    private int excalateHp = 15;
 
     //private Vector3 StartingPosition;
     void Start()
@@ -28,7 +31,8 @@ public class EnemyGeneration : MonoBehaviour
             int numEnemies = Random.Range(1, 4);
             for (int e = 0; e < numEnemies; e++){
                 Vector3 spawnPosition = new Vector3(transform.position.x+e, transform.position.y+e, 0);
-                Instantiate(enemy, spawnPosition, Quaternion.identity);
+                GameObject eea = Instantiate(enemy, spawnPosition, Quaternion.identity);
+                eea.gameObject.GetComponent<Enemy>().setMaxHp(excalateHp);
             }    
         }
 
@@ -39,5 +43,30 @@ public class EnemyGeneration : MonoBehaviour
                 timer = 0;
             }
         }
+        
+        timeBetweenEnemyUpgrade += Time.deltaTime;
+
+        if (timeBetweenEnemyUpgrade >= 60.0f) 
+        {
+            excalateHp += 5;
+            timeBetweenEnemyUpgrade = 0.0f;
+            Debug.LogWarning("Enemy hp upraded");
+        }
+
+        targetTime += Time.deltaTime;
+
+        if (targetTime >= 180.0f)
+        {
+            
+            foreach (GameObject e in GameObject.FindGameObjectsWithTag("enemy"))
+            {
+                Destroy(e);
+            }
+
+            Debug.LogWarning("Enemigos eliminados");
+
+            gameObject.SetActive(false);
+            
+        } 
     }
 }

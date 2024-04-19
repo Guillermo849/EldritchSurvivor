@@ -13,9 +13,9 @@ public class Enemy : MonoBehaviour
     //[SerializeField]Character targedCharacter;
     private float SPEED = 1.03f;
 
-    public int maxHp = 20;
+    private int maxHp = 10;
 
-    public int currentHp = 20;
+    private int currentHp;
 
     Rigidbody2D rgbd2d;
 
@@ -23,9 +23,9 @@ public class Enemy : MonoBehaviour
 
     private void Awake() 
     {
+        currentHp = maxHp;
         targetCharacter = GameObject.Find("PlayerCharacter");
         rgbd2d = GetComponent<Rigidbody2D>();
-        //targetGameObject = targetDestination.gameObject;
     }
 
     private void FixedUpdate() 
@@ -59,5 +59,16 @@ public class Enemy : MonoBehaviour
             Debug.LogWarning("Enemigo eliminado");
             Destroy(gameObject);
         }        
+    }
+
+    public void setMaxHp(int hp)
+    {
+        maxHp = hp;
+        currentHp = maxHp;
+    }
+
+    public int getMaxHp()
+    {
+        return maxHp;
     }
 }
