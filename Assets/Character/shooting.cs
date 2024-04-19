@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shooting : MonoBehaviour
+public class Shooting : MonoBehaviour
 {
     private Vector3 mousePos;
     public GameObject bullet;

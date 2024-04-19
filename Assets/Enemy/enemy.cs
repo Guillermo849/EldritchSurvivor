@@ -6,32 +6,37 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Debug = UnityEngine.Debug;
 
-public class enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform targetDestination;
-    GameObject targetGameObject;
-    [SerializeField]Character targedCharacter;
-    [SerializeField] float speed;
+    //[SerializeField] Transform targetDestination;
+    GameObject targetCharacter;
+    //[SerializeField]Character targedCharacter;
+    private float SPEED = 1.03f;
+
+    private int maxHp = 10;
+
+    private int currentHp;
 
     Rigidbody2D rgbd2d;
 
-    [SerializeField] int damage = 1;
+    private int DAMAGE = 1;
 
     private void Awake() 
     {
+        currentHp = maxHp;
+        targetCharacter = GameObject.Find("PlayerCharacter");
         rgbd2d = GetComponent<Rigidbody2D>();
-        targetGameObject = targetDestination.gameObject;
     }
 
     private void FixedUpdate() 
     {
-        Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rgbd2d.velocity = direction * speed;
+        Vector3 direction = (targetCharacter.GetComponent<Transform>().position - transform.position).normalized;
+        rgbd2d.velocity = direction * SPEED;
     }
 
     private void OnCollisionStay2D(Collision2D collision) 
     {
-        if (collision.gameObject == targetGameObject)
+        if (collision.gameObject == targetCharacter)
         {
             Attack();
         }
@@ -39,7 +44,31 @@ public class enemy : MonoBehaviour
 
     private void Attack()
     {
-        targedCharacter.TakeDamage(damage);   
+        targetCharacter.GetComponent<Character>().TakeDamage(DAMAGE);   
     }
-    
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+    }
+
+    private void Update() {
+
+        if (currentHp <= 0)
+        {
+            Debug.LogWarning("Enemigo eliminado");
+            Destroy(gameObject);
+        }        
+    }
+
+    public void setMaxHp(int hp)
+    {
+        maxHp = hp;
+        currentHp = maxHp;
+    }
+
+    public int getMaxHp()
+    {
+        return maxHp;
+    }
 }
