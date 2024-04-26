@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - boss
+  - enemyGenerator
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Laser
   - Water
   - UI
   - 
