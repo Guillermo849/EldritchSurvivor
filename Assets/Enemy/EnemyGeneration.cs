@@ -9,6 +9,7 @@ public class EnemyGeneration : MonoBehaviour
 {
     public GameObject characterPoint;
     public GameObject enemy;
+    [SerializeField] public GameObject boss;
     private bool canGenerate = true;
     private float timer;
     public float timeBetweenGeneration;
@@ -64,6 +65,9 @@ public class EnemyGeneration : MonoBehaviour
             }
 
             Debug.LogWarning("Enemigos eliminados");
+
+            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, 0);
+            Instantiate(boss, spawnPosition, Quaternion.identity);
 
             gameObject.SetActive(false);
             

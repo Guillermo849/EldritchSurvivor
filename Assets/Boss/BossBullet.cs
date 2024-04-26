@@ -22,7 +22,7 @@ public class BossBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         Destroy(gameObject, 10);
     }
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.tag == "Player")
         {
