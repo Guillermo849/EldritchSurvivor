@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     private int DAMAGE = 1;
 
+    [SerializeField] int experience_reward = 400;
+
     private void Awake() 
     {
         currentHp = maxHp;
@@ -57,6 +59,7 @@ public class Enemy : MonoBehaviour
         if (currentHp <= 0)
         {
             Debug.LogWarning("Enemigo eliminado");
+            targetCharacter.GetComponent<Level>().AddExperience(experience_reward);
             Destroy(gameObject);
         }        
     }

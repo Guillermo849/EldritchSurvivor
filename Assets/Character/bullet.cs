@@ -6,14 +6,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Vector3 mousePos;
+    private GameObject targetCharacter;
     private Rigidbody2D rb;
     private float FORCE = 3;
-    public int damage = 5;
+    private int damage;
     [SerializeField] GameObject targedEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
+        targetCharacter = GameObject.Find("PlayerCharacter");
+        damage = targetCharacter.GetComponent<Character>().damage;
+        
         rb = GetComponent<Rigidbody2D>();
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;

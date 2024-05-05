@@ -9,15 +9,21 @@ public class Shooting : MonoBehaviour
     public Transform bulletTransform;
     public bool canFire;
     private float timer;
-    public float timeBetweenFiring;
+    private float timeBetweenFiring;
+    private GameObject targetCharacter;
+
     // Start is called before the first frame update
     void Start()
     {
+        targetCharacter = GameObject.Find("PlayerCharacter");
+        timeBetweenFiring = targetCharacter.GetComponent<Character>().attackSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeBetweenFiring = targetCharacter.GetComponent<Character>().attackSpeed;
+        
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
         // Transforms the radio of the position into degrees
