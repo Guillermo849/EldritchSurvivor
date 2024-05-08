@@ -1,17 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using Debug = UnityEngine.Debug;
 
 public class Enemy : MonoBehaviour
 {
     //[SerializeField] Transform targetDestination;
     GameObject targetCharacter;
     //[SerializeField]Character targedCharacter;
-    private float SPEED = 1.03f;
+    private float speed = 1.03f;
 
     private int maxHp = 10;
 
@@ -33,7 +27,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate() 
     {
         Vector3 direction = (targetCharacter.GetComponent<Transform>().position - transform.position).normalized;
-        rgbd2d.velocity = direction * SPEED;
+        rgbd2d.velocity = direction * speed;
     }
 
     private void OnCollisionStay2D(Collision2D collision) 
@@ -58,7 +52,6 @@ public class Enemy : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            Debug.LogWarning("Enemigo eliminado");
             targetCharacter.GetComponent<Level>().AddExperience(experience_reward);
             Destroy(gameObject);
         }        
@@ -66,12 +59,12 @@ public class Enemy : MonoBehaviour
 
     public void setMaxHp(int hp)
     {
-        maxHp = hp;
+        maxHp += hp;
         currentHp = maxHp;
     }
 
-    public int getMaxHp()
+    public void setSpeed(float extraSpeed)
     {
-        return maxHp;
+        speed += extraSpeed;
     }
 }

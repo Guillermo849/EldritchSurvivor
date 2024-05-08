@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
 
 public class EnemyGeneration : MonoBehaviour
 {
@@ -13,10 +8,10 @@ public class EnemyGeneration : MonoBehaviour
     private bool canGenerate = true;
     private float timer;
     public float timeBetweenGeneration;
-    [SerializeField] public Transform centerPoint;
     private float targetTime = 0.0f;
     private float timeBetweenEnemyUpgrade = 0.0f;
-    private int excalateHp = 15;
+    private int excalateHp = 10;
+    private float excalateSpeed = 1f;
 
     //private Vector3 StartingPosition;
     void Start()
@@ -25,7 +20,6 @@ public class EnemyGeneration : MonoBehaviour
     }
 
     void Update() {
-        transform.RotateAround(centerPoint.position, new Vector3(0, 0, 1), 10);
 
         if (canGenerate) {
             canGenerate = false;
@@ -34,6 +28,7 @@ public class EnemyGeneration : MonoBehaviour
                 Vector3 spawnPosition = new Vector3(transform.position.x+e, transform.position.y+e, 0);
                 GameObject eea = Instantiate(enemy, spawnPosition, Quaternion.identity);
                 eea.gameObject.GetComponent<Enemy>().setMaxHp(excalateHp);
+                eea.gameObject.GetComponent<Enemy>().setSpeed(excalateSpeed);
             }    
         }
 
@@ -49,9 +44,7 @@ public class EnemyGeneration : MonoBehaviour
 
         if (timeBetweenEnemyUpgrade >= 60.0f) 
         {
-            excalateHp += 5;
             timeBetweenEnemyUpgrade = 0.0f;
-            Debug.LogWarning("Enemy hp upraded");
         }
 
         targetTime += Time.deltaTime;
@@ -63,8 +56,6 @@ public class EnemyGeneration : MonoBehaviour
             {
                 Destroy(e);
             }
-
-            Debug.LogWarning("Enemigos eliminados");
 
             Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, 0);
             Instantiate(boss, spawnPosition, Quaternion.identity);

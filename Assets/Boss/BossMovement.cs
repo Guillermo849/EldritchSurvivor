@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
     private GameObject targetCharacter;
     private Rigidbody2D rgbd2d;
-    private float speed = 1.03f;
+    private float speed = 2.03f;
     public float distance = 3.0f;
     public float distanceToTeleport = 10.0f;
-    [SerializeField] Transform teleportObject;
+    Transform teleportObject;
     private Transform teleportedObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        targetCharacter = GameObject.Find("PlayerCharacter");
+        targetCharacter = GameObject.Find("PlayerCharacter"); 
         rgbd2d = GetComponent<Rigidbody2D>();
+        teleportObject = GameObject.Find("Generator").transform;
         teleportedObject = gameObject.transform;
     }
 

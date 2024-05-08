@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class Character : MonoBehaviour
     public int currentHp = 1000;
     [SerializeField] StatusBar hpBar;
     public int damage = 5;
-    public int speed = 5;
+    public int speed = 3;
     public float attackSpeed = 1;
     [SerializeField] UpgradeManager upgradeManager;
 
@@ -18,8 +17,7 @@ public class Character : MonoBehaviour
 
         if (currentHp < 0)
         {
-            Debug.LogWarning("Has morido GAME OVER");
-            Time.timeScale = 0;
+            SceneManager.LoadScene("LooseScreen");
         }
         hpBar.SetState(currentHp, maxHp);
     }
@@ -38,14 +36,15 @@ public class Character : MonoBehaviour
 
     public void AttackSpeedUp(float cant)
     {
-        if (attackSpeed == 0.2f)
-            {
-                Debug.LogWarning("Max amount of cadence reached");
-            }
-            else
-                {
-                    attackSpeed -= cant;
-                    upgradeManager.CloseMenu();
-                }
+       
+        
+        Debug.Log(attackSpeed);
+        if (attackSpeed <= 0.4f) {
+            Debug.LogWarning("Max amount of cadence reached");
+
+        } else {
+            attackSpeed -= cant;
+            upgradeManager.CloseMenu();
+        }
     }
 }

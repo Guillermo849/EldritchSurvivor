@@ -312,7 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ae1413bb733e54ca7917220b201935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPlayer: {fileID: 0}
   rotationPoint: {fileID: 275937972664427481}
   laser: {fileID: 349898608697133804}
   bullet: {fileID: 7987227882650941571, guid: 21b2a040493f0d64c80e4adb7948a15b, type: 3}
@@ -330,8 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 3
-  distanceToTeleport: 10
-  teleportObject: {fileID: 0}
+  distanceToTeleport: 15
 --- !u!61 &1295627080144117424
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,24 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BossAttacks : MonoBehaviour
 {
-    [SerializeField] GameObject characterPlayer;
+    private GameObject characterPlayer;
     [SerializeField] GameObject rotationPoint;
     [SerializeField] GameObject laser;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject meteor;
     private Transform bulletTransform;
     private bool canAttack = false;
-    private float TIMEBETWEENATTACKS = 10f;
+    private float TIMEBETWEENATTACKS = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
+        characterPlayer = GameObject.Find("PlayerCharacter");
         bulletTransform = GameObject.Find("BossBulletTransform").transform;
         StartCoroutine(WaitTillNextAttack());
     }
@@ -30,7 +27,9 @@ public class BossAttacks : MonoBehaviour
 
         if (canAttack) {
             canAttack = false;
-            float distance = Vector3.Distance(characterPlayer.transform.position, transform.position);
+            float distance = Vector3.Distance(
+                characterPlayer.transform.position, 
+                transform.position);
 
             if (Random.Range(1, 3) == 1) {
                 StartCoroutine(AirAttack());
@@ -78,18 +77,12 @@ public class BossAttacks : MonoBehaviour
         StartCoroutine(WaitTillNextAttack());
     }
     private IEnumerator AirAttack(){
-        meteor.SetActive(true);
-        meteor.transform.position = (Vector3) new Vector2(characterPlayer.transform.position.x, characterPlayer.transform.position.y);
-        Vector3 originalSize = meteor.transform.localScale;
-        for (int i = 0; i < 3; i++) {
-            yield return new WaitForSeconds(0.3f);
-            meteor.transform.localScale = new Vector3(originalSize.x-0.3f, originalSize.y-0.3f, 0);
+        for (int m = 0; m < 4; m++) {
+            GameObject mtr = Instantiate(meteor, characterPlayer.transform.position, Quaternion.identity);
+            mtr.SetActive(true);
+            mtr.transform.localScale = new Vector3(6f, 6f, 0);
+            yield return new WaitForSeconds(1f);
         }
-        meteor.transform.localScale = originalSize;
-        meteor.GetComponent<BoxCollider2D>().enabled = true;
-        yield return new WaitForSeconds(0.7f);
-        meteor.GetComponent<BoxCollider2D>().enabled = false;
-        meteor.SetActive(false);
         StartCoroutine(WaitTillNextAttack());
     }
 }

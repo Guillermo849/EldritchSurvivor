@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossBasic : MonoBehaviour
 {
-    private int maxHp = 150;
+    private int maxHp = 1500;
     public int currentHp;
     private GameObject targetCharacter;
     private int colisionDamage = 2;
@@ -37,7 +36,7 @@ public class BossBasic : MonoBehaviour
         if (currentHp <= 0)
         {
             gameObject.SetActive(false);
-            Debug.LogWarning("Jefe eliminado, Has ganado!!!");
+            SceneManager.LoadScene("WinScreen");
         }
         hpBar.SetState(currentHp, maxHp);
     }
