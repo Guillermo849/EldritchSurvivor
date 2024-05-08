@@ -16,12 +16,14 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (panel.activeInHierarchy == false)
+            if (panel.activeInHierarchy == false && Time.timeScale != 0)
             {
                 OpenMenu();
             } 
             else {
-                CloseMenu();
+                if (Time.timeScale != 0){
+                    CloseMenu();
+                }
             }
         }
     }
