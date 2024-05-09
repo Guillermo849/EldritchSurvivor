@@ -5,6 +5,7 @@ public class LaserAttack : MonoBehaviour
 {
     private int DAMAGE = 10;
     
+    // When it stays with the Player character it will deal consecutive damage.
      public void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Player")
         {

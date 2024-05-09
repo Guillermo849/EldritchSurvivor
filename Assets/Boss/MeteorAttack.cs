@@ -8,6 +8,8 @@ public class MeteorAttack : MonoBehaviour
     public void Start() {
         StartCoroutine(Strike());
     }
+
+    // It moves to the current character postion and stay there until it finishes it's loop
     private IEnumerator Strike(){
         Vector3 originalSize = gameObject.transform.localScale;
         for (int i = 0; i < 3; i++) {
@@ -21,6 +23,7 @@ public class MeteorAttack : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // It deals damage to the charater once when it comes to in contact with it for the first time
      public void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player")
         {

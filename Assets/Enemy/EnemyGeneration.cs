@@ -13,14 +13,9 @@ public class EnemyGeneration : MonoBehaviour
     private int excalateHp = 10;
     private float excalateSpeed = 1f;
 
-    //private Vector3 StartingPosition;
-    void Start()
-    {
-       // StartingPosition = transform.position;
-    }
-
     void Update() {
 
+        // Checks if it can generate enemies, if it can it will generate between 1 and 3 enemies.
         if (canGenerate) {
             canGenerate = false;
             int numEnemies = Random.Range(1, 4);
@@ -42,6 +37,7 @@ public class EnemyGeneration : MonoBehaviour
         
         timeBetweenEnemyUpgrade += Time.deltaTime;
 
+        // Every minute the enemies will gain more health and movement speed
         if (timeBetweenEnemyUpgrade >= 60.0f) 
         {
             timeBetweenEnemyUpgrade = 0.0f;
@@ -49,6 +45,7 @@ public class EnemyGeneration : MonoBehaviour
 
         targetTime += Time.deltaTime;
 
+        // Once 3 minutes have passed all the enemies will be destroy and the boss will be created
         if (targetTime >= 180.0f)
         {
             

@@ -9,7 +9,8 @@ public class Bullet : MonoBehaviour
     private int damage;
     [SerializeField] GameObject targedEnemy;
 
-    // Start is called before the first frame update
+    // Once it's created it will travel through the angle between the character and where it aimed.
+    // It will destroy itself after 10 seconds
     void Start()
     {
         targetCharacter = GameObject.Find("PlayerCharacter");
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 10);
     }
 
+    // If it comes in contact with the boss or enemy it will deal damage to them and destory itself
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.tag == "enemy")

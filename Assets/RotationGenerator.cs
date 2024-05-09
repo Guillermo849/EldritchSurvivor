@@ -8,7 +8,8 @@ public class RotationGenerator : MonoBehaviour
 
     private float rotateSpeed = 1;
 
-    // Update is called once per frame
+    // It will rotate around the the player character, if it hits any of the barries the rotation speed will become negative
+    // so as to not spawn enemies or the boss outside the barrier
     void Update()
     {
         StartCoroutine(Rotate());

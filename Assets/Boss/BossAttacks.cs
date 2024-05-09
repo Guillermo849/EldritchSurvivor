@@ -12,7 +12,7 @@ public class BossAttacks : MonoBehaviour
     private bool canAttack = false;
     private float TIMEBETWEENATTACKS = 1.5f;
 
-    // Start is called before the first frame update
+    // When the boss is iniciated it will locate player character and the boss bullet transform 
     void Start()
     {
         characterPlayer = GameObject.Find("PlayerCharacter");
@@ -20,7 +20,11 @@ public class BossAttacks : MonoBehaviour
         StartCoroutine(WaitTillNextAttack());
     }
 
-    // Update is called once per frame
+    // Once per frame the gameobject that generates the bullets will rotate around the BOSS.
+    // It will choose at random one attack every 1.5 seconds, depending on the distance between 
+    // the BOSS and the player character it will choose:
+    //      Laser or Air attack
+    //      Shoot or Air attack
     void Update()
     {
         rotationPoint.transform.RotateAround(transform.position, new Vector3(0, 0, 1), 10);

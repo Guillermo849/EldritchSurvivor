@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviour
         // Will change the rotation position in the Z axis
         transform.rotation = Quaternion.Euler(0,0,rotZ);
 
+        // It determines if the character can shoot or not depending on the timeBetweenFiering
         if (!canFire) {
             timer += Time.deltaTime;
             if (timer > timeBetweenFiring) {
