@@ -4,6 +4,7 @@ public class StatusBar : MonoBehaviour
 {
     [SerializeField] Transform bar;
 
+    // Funcion que hace que la barra de vida del jugador se actualice y sea funcional
     public void SetState(int current, int max) 
     {
         float state = (float)current;

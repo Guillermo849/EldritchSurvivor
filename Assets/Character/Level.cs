@@ -12,6 +12,7 @@ public class Level : MonoBehaviour
         targetCharacter = GameObject.Find("PlayerCharacter");
     }
 
+    // Se declara una variable que aumenta su valor cada vez que es llamada
     int TO_LEVEL_UP
     {
         get 
@@ -20,12 +21,14 @@ public class Level : MonoBehaviour
         }
     }
 
+    // Añade una cantidad pasada como parametro a la experiencia total del personaje
     public void AddExperience(int cant)
     {
         experience += cant;
         CheckLevelUp();
     }
 
+    // Comprueva si es posible subir de nivel
     public void CheckLevelUp()
     {
         if (experience >= TO_LEVEL_UP)
@@ -35,6 +38,7 @@ public class Level : MonoBehaviour
         xPbar.SetState(experience, TO_LEVEL_UP);
     }
 
+    // Sube de nivel al personaje
     private void LevelUp()
     {
         upgradeManager.OpenMenu();

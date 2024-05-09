@@ -4,6 +4,7 @@ public class XPbar : MonoBehaviour
 {
     [SerializeField] Transform bar;
 
+    // Funcion que hace que la barra de experiencia del jugador se actualice y sea funcional
     public void SetState(int current, int max)
     {
         float state = (float)current;

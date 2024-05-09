@@ -16,6 +16,7 @@ public class BossBasic : MonoBehaviour
         targetCharacter = GameObject.Find("PlayerCharacter");
     }
 
+    // Cuando el boss entra en contacto con el jugador llama a la funcion de atacar
     private void OnCollisionStay2D(Collision2D collision) 
     {
         if (collision.gameObject == targetCharacter)
@@ -24,11 +25,13 @@ public class BossBasic : MonoBehaviour
         }
     }
 
+    // Funcion que provoca que el jugador reciba la cantidad de puntos de daño asignada a la variable "colisionDamage"
     private void Attack()
     {
         targetCharacter.GetComponent<Character>().TakeDamage(colisionDamage);   
     }
 
+    // Funcion que provoca que el boss reciba la cantidad de daño pasada como parametro
     public void TakeDamage(int damage)
     {
         currentHp -= damage;

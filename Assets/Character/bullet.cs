@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 10);
     }
 
-    // If it comes in contact with the boss or enemy it will deal damage to them and destory itself
+    // If it comes in contact with the boss or enemy it will deal damage to them and destroy itself
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.tag == "enemy")

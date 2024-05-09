@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     public float attackSpeed = 1;
     [SerializeField] UpgradeManager upgradeManager;
 
+    // Funcion que proboca que el personaje reciva una cantidad de daño pasada como parametro
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
@@ -22,22 +23,23 @@ public class Character : MonoBehaviour
         hpBar.SetState(currentHp, maxHp);
     }
 
+    // Aumenta el daño en un valor pasado como parametro
     public void DamageUp(int cant)
     {
         damage += cant;
         upgradeManager.CloseMenu();
     }
 
+    // Aumenta la velocidad del jugador en un valor pasado como parametro
     public void SpeedUp(int cant)
     {
         speed += cant;
         upgradeManager.CloseMenu();
     }
 
+    // Aumenta la velocidad de disparo en un valor pasado como parametro comprobando que el valor de "attackSpeed" no entre en valor negativo
     public void AttackSpeedUp(float cant)
     {
-       
-        
         Debug.Log(attackSpeed);
         if (attackSpeed <= 0.4f) {
             Debug.LogWarning("Max amount of cadence reached");

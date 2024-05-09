@@ -7,7 +7,9 @@ public class BossBullet : MonoBehaviour
     private int FORCE = 3;
     public int damage = 50;
     private Rigidbody2D rb;
-    // Start is called before the first frame update
+
+    // Once it's created it will travel through the angle between the character and where it aimed.
+    // It will destroy itself after 10 seconds
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +22,8 @@ public class BossBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         Destroy(gameObject, 10);
     }
+
+    // If it comes in contact with the character it will deal damage to the player and destory itself
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.tag == "Player")

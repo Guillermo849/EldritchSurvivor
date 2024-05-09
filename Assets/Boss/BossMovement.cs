@@ -19,7 +19,8 @@ public class BossMovement : MonoBehaviour
         teleportedObject = gameObject.transform;
     }
 
-    // Update is called once per frame
+    // Funcion que esta constantemente llamando a la funcion "DistanceBetween" y si es mayor a la cantidad de la variable "distance" se dirije a la posicion del jugador, 
+    // pero si la distancia es menor el boss se queda quieto
     void Update()
     {
         if (DistanceBetween() > distance)
@@ -37,6 +38,7 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+    // Funcion que devuelve la distancia ente el jugador y el boss
     private float DistanceBetween()
     {
         float distance = Vector3.Distance (gameObject.transform.position, targetCharacter.transform.position);
