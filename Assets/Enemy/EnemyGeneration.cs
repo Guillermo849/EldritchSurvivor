@@ -46,7 +46,7 @@ public class EnemyGeneration : MonoBehaviour
         targetTime += Time.deltaTime;
 
         // Once 3 minutes have passed all the enemies will be destroy and the boss will be created
-        if (targetTime >= 10.0f)
+        if (targetTime >= 180.0f)
         {
             
             foreach (GameObject e in GameObject.FindGameObjectsWithTag("enemy"))
