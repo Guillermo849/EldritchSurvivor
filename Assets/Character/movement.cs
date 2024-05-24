@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     Rigidbody2D rgbd2d;
     Vector3 movementVector;
     private GameObject targetCharacter;
+    private Animator animator;
 
     // 
     private void Awake()
@@ -20,6 +21,8 @@ public class Movement : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         rgbd2d = GetComponent<Rigidbody2D>();
         movementVector = new Vector3();
+
+        animator = GetComponent<Animator>();
     }
 
     // Establece la velocidad del personaje y establece valores para los ejes x e y dependiendo que teclas de direccion estes presionando
@@ -31,5 +34,24 @@ public class Movement : MonoBehaviour
         movementVector.y = Input.GetAxisRaw("Vertical");
 
         rgbd2d.velocity = movementVector * speed;
+
+        if (rgbd2d.velocity.magnitude > 0)
+        {
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                animator.SetBool("movement", true);
+                animator.SetBool("direccion", true);
+            } 
+            else 
+            {
+                animator.SetBool("movement", true);
+                animator.SetBool("direccion", false);
+            }
+        } 
+        else 
+        {
+            animator.SetBool("movement", false);
+        }
+        
     }
 }
